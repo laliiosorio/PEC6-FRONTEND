@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/">Patitos</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/" (click)="showComponent('home')">Inicio</a>
+                </li>
+
+                <div *ngIf="currentComponent === 'list' || currentComponent === 'home'">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/list" (click)="showComponent('list')">Artículos</a>
+                    </li>
+                </div>
+
+                <div *ngIf="currentComponent === 'create-article-driven' || currentComponent === 'home'">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/create-article-driven" (click)="showComponent('create-article-driven')">Nuevo artículo
+                            template</a>
+                    </li>
+                </div>
+                <div *ngIf="currentComponent === 'create-article-reactive' || currentComponent === 'home'">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/create-article-reactive" (click)="showComponent('create-article-reactive')">Nuevo artículo
+                            reactivo</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>

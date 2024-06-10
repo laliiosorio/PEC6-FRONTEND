@@ -1,0 +1,32 @@
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 auto;
+}
+
+.form-container {
+  width: 500px;
+  padding: 20px;
+  background-color: #f5ca01;
+  border-radius: 14px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  font-weight: 600;
+}
+
+.form-container .btn {
+  width: 100%;
+  text-align: center;
+}
+
+.text-danger {
+  margin-top: 5px;
+}

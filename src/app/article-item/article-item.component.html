@@ -1,0 +1,37 @@
+<section class="article-item">
+  <img class="article-img" [src]="article.imageUrl" alt="Artículo" />
+  <div class="article-description" [ngClass]="{ 'on-sale': article.isOnSale }">
+    <h3>{{ article.name }}</h3>
+
+    <div class="article-value">
+      <div class="quantity" *ngIf="article.isOnSale">
+        <p class="quantity-title">Cantidad</p>
+        <div class="quantity-actions">
+          <button class="circular-button" (click)="incrementQuantity()">
+            +
+          </button>
+          <p class="quantity-value">{{ article.quantityInCart }}</p>
+          <button
+            class="circular-button less"
+            (click)="decrementQuantity()"
+            [disabled]="article.quantityInCart === 0"
+          >
+            -
+          </button>
+        </div>
+      </div>
+
+      <div class="price">
+        <p class="price-title">Precio</p>
+        <p
+          [ngClass]="{
+            'on-sale': article.isOnSale,
+            'not-on-sale': !article.isOnSale
+          }"
+        >
+          {{ article.price }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
