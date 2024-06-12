@@ -10,6 +10,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleNewReactiveComponent } from './article-new-reactive/article-new-reactive.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DefaultImagePipe } from './pipes/default-image.pipe';
+import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     ArticleNewTemplateComponent,
     ArticleNewReactiveComponent,
     ArticleItemComponent,
-    NavbarComponent
+    NavbarComponent,
+    DefaultImagePipe,
+    CurrencyFormatPipe
   ],
   imports: [
     BrowserModule,

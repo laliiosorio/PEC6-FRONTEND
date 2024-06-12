@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { ArticleService } from '../article-service.service';
+import { ArticleService } from '../services/article-service.service';
 
 @Component({
   selector: 'app-article-new-reactive',
@@ -10,7 +10,7 @@ import { ArticleService } from '../article-service.service';
 export class ArticleNewReactiveComponent implements OnInit {
   articleForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,  private articleService: ArticleService) {}
+  constructor(private fb: FormBuilder, private articleService: ArticleService) { }
 
   ngOnInit() {
     this.articleForm = this.fb.group({
@@ -25,7 +25,6 @@ export class ArticleNewReactiveComponent implements OnInit {
     const forbiddenNames = ['Prueba', 'Test', 'Mock', 'Fake'];
     return forbiddenNames.includes(control.value) ? { forbiddenName: true } : null;
   }
-
 
   onSubmit() {
     if (this.articleForm.valid) {

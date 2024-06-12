@@ -1,5 +1,8 @@
 <section class="article-item">
-  <img class="article-img" [src]="article.imageUrl" alt="Artículo" />
+  <img
+    class="article-img"
+    [src]="article.imageUrl | defaultImage"
+    alt="Artículo" />
   <div class="article-description" [ngClass]="{ 'on-sale': article.isOnSale }">
     <h3>{{ article.name }}</h3>
 
@@ -14,8 +17,7 @@
           <button
             class="circular-button less"
             (click)="decrementQuantity()"
-            [disabled]="article.quantityInCart === 0"
-          >
+            [disabled]="article.quantityInCart === 0">
             -
           </button>
         </div>
@@ -27,9 +29,8 @@
           [ngClass]="{
             'on-sale': article.isOnSale,
             'not-on-sale': !article.isOnSale
-          }"
-        >
-          {{ article.price }}
+          }">
+          {{ article.price | currencyFormat }}
         </p>
       </div>
     </div>

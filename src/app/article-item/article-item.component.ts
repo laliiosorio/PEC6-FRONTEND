@@ -11,13 +11,13 @@ export class ArticleItemComponent {
   @Input() article: Article = {
     id: 0,
     name: 'Nombre del Artículo',
-    imageUrl: '../../assets/pato-1.png',
+    imageUrl: 'assets/images/pato-1.png',
     price: 100,
     isOnSale: false,
     quantityInCart: 0
   };
 
-  constructor() {}
+  constructor() { }
 
   @Output() quantityChange: EventEmitter<ArticleQuantityChange> = new EventEmitter<ArticleQuantityChange>();
 
