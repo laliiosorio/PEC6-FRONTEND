@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { ArticleService } from '../article-service.service';
 
 @Component({
   selector: 'app-article-new-reactive',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 export class ArticleNewReactiveComponent implements OnInit {
   articleForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,  private articleService: ArticleService) {}
 
   ngOnInit() {
     this.articleForm = this.fb.group({
@@ -25,10 +26,13 @@ export class ArticleNewReactiveComponent implements OnInit {
     return forbiddenNames.includes(control.value) ? { forbiddenName: true } : null;
   }
 
+
   onSubmit() {
     if (this.articleForm.valid) {
-      console.log('Formulario válido, datos:', this.articleForm.value);
-      this.articleForm.reset();
+      this.articleService.create(this.articleForm.value).subscribe(() => {
+        console.log('Artículo creado:', this.articleForm.value);
+        this.articleForm.reset();
+      });
     } else {
       console.log('Formulario no válido');
       this.markAllAsTouched();

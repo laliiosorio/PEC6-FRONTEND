@@ -9,7 +9,7 @@ import { ArticleNewTemplateComponent } from './article-new-template/article-new-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleNewReactiveComponent } from './article-new-reactive/article-new-reactive.component';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +23,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

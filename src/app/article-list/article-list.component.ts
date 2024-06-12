@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../article.model';
+import { Observable } from 'rxjs';
+import { ArticleService } from '../article-service.service';
 
 @Component({
   selector: 'app-article-list',
@@ -7,45 +9,26 @@ import { Article } from '../article.model';
   styleUrl: './article-list.component.css'
 })
 export class ArticleListComponent implements OnInit{
-  articles: Article[] = [
-    {
-      id: 1,
-      name: 'Artículo 1',
-      imageUrl: '../../assets/pato-1.png',
-      price: 50,
-      isOnSale: true,
-      quantityInCart: 0
-    },
-    {
-      id: 2,
-      name: 'Artículo 2',
-      imageUrl: '../../assets/pato-2.png',
-      price: 75,
-      isOnSale: true,
-      quantityInCart: 0
-    },
-    {
-      id: 3,
-      name: 'Artículo 3',
-      imageUrl: '../../assets/pato-3.png',
-      price: 100,
-      isOnSale: false,
-      quantityInCart: 0
-    }
-  ];
+  articles!: Observable<Article[]>;
 
+  constructor(private articleService: ArticleService) { }
 
   ngOnInit(): void {
-    this.articles
+    this.articles = this.articleService.getArticles();
   }
 
   onQuantityChange(change: ArticleQuantityChange) {
-    const articleToUpdate = this.articles.find(article => article.id === change.article.id);
-    if (articleToUpdate) {
-      articleToUpdate.quantityInCart = change.quantity;
-    }
+    this.articleService.changeQuantity(change.article.id, change.quantity - change.article.quantityInCart)
+      .subscribe({
+        next: updatedArticle => {
+        },
+        error: err => {
+          console.error('Error actualizando la cantidad', err);
+        }
+      });
   }
 }
+
 
 export interface ArticleQuantityChange {
   article: Article;
